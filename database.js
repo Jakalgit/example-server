@@ -1,9 +1,9 @@
 const {Sequelize} = require('sequelize')
 
 module.exports = new Sequelize(
-    'fedwszks', // Название БД
-    'fedwszks', // Пользователь
-    'WI7l3E8O5L7JIBHLAvW6da7Szp7Sq8IA', // Пароль
+    'postgres', // Название БД
+    'postgres', // Пользователь
+    'parus12database', // Пароль
     {
         dialect: 'postgres',
         dialectOptions: {
@@ -12,7 +12,7 @@ module.exports = new Sequelize(
                 rejectUnauthorized: false
             }
         },
-        host: 'peanut.db.elephantsql.com',
+        host: 'db.opztfbjgsvpzargnicly.supabase.co',
         port: '5432',
     },
 )
