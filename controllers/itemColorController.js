@@ -239,7 +239,7 @@ function streamStart(file, img) {
             contentType: img.mimetype,
         },
     })
-
+    console.log("this")
     stream.on("error", (e) => {
         console.log(e)
     }).on("finish", async () => {
