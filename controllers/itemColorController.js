@@ -244,6 +244,7 @@ function streamStart(file, img) {
         console.error(e)
     }).on("finish", async () => {
         await file.makePublic()
+        console.log('shared')
     }).end(img.data)
 }
 
