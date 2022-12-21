@@ -241,7 +241,7 @@ function streamStart(file, img) {
     })
 
     stream.on("error", (e) => {
-        console.error(e)
+        console.log(e)
     }).on("finish", async () => {
         await file.makePublic()
         console.log('shared')
