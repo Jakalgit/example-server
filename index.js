@@ -29,7 +29,7 @@ const start = async () => {
         await sequelize.sync()
         await admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
-            storageBucket: process.env.BUCKET_URL
+            storageBucket: 'gs://shoprc-storage.appspot.com/'
         });
         app.listen(PORT, () => console.log('Server started on port ' + PORT))
     } catch (e) {
