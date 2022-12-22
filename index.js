@@ -10,7 +10,7 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./shoprc-storage-firebase-adminsdk-9ks2m-3ca44433cc.json");
 const bodyParser = require("body-parser");
 
-const PORT = process.env.PORT
+const PORT = 5000
 
 const app = express()
 app.use(cors())
