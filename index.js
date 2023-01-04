@@ -10,7 +10,7 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./shoprc-storage-firebase-adminsdk-9ks2m-3ca44433cc.json");
 const bodyParser = require("body-parser");
 
-const PORT = process.env.PORT
+const PORT = 5000
 
 const app = express()
 app.use(cors())
@@ -29,7 +29,7 @@ const start = async () => {
         await sequelize.sync()
         await admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
-            storageBucket: process.env.BUCKET_URL
+            storageBucket: 'gs://shoprc-storage.appspot.com/'
         });
         app.listen(PORT, () => console.log('Server started on port ' + PORT))
     } catch (e) {

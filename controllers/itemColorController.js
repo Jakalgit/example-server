@@ -239,11 +239,12 @@ function streamStart(file, img) {
             contentType: img.mimetype,
         },
     })
-
+    
     stream.on("error", (e) => {
-        console.error(e)
+        console.log(e)
     }).on("finish", async () => {
         await file.makePublic()
+        console.log('shared')
     }).end(img.data)
 }
 
