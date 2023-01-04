@@ -91,17 +91,19 @@ const RepairRequest = sequelize.define('repair_request', {
     response: {type: DataTypes.BOOLEAN, allowNull: false},
 })
 
-const Scale = sequelize.define('scale', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    value: {type: DataTypes.STRING, unique: false, allowNull: false}
-})
-
 const Dialog = sequelize.define('dialog', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     chatId: {type: DataTypes.INTEGER, primaryKey: true},
     name: {type: DataTypes.STRING, allowNull: false},
     lastMessage: {type: DataTypes.STRING, allowNull: false},
     lastAdminCheck: {type: DataTypes.STRING, allowNull: false},
+})
+
+const Request = sequelize.define('request', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false},
+    phone: {type: DataTypes.STRING, allowNull: false},
+    checked: {type: DataTypes.BOOLEAN, allowNull: false}
 })
 
 const Tag_to_Item = sequelize.define('tag_item', {
@@ -145,9 +147,9 @@ module.exports = {
     OrderItem,
     ItemInfo,
     ItemColor,
-    Scale,
     RepairRequest,
     Dialog,
     ItemTag,
+    Request,
     Tag_to_Item
 }
