@@ -5,9 +5,9 @@ class orderItemController {
 
     async create(req, res, next) {
         try {
-            const {orderId, name, price, img, count, id} = req.body
+            const {orderId, name, price, img, article, count, id} = req.body
 
-            const orderItem = await OrderItem.create({name, price, img, count, orderId})
+            const orderItem = await OrderItem.create({name, price, img, article, count, orderId})
             const item = await Item.findOne({where: {id}})
 
             item.count_shop += 1

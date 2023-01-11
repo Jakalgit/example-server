@@ -15,7 +15,8 @@ class userController {
 
             return res.json(user)
         } catch (e) {
-
+            console.log(e)
+            return res.json(e)
         }
     }
 }

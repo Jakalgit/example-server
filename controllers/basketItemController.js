@@ -3,11 +3,13 @@ const {BasketItem} = require("../models/models")
 class basketItemController {
     async create(req, res) {
         try {
-            const {itemId, itemColorId, basketId, count, image, name, price} = req.body
+            const {itemId, itemColorId, basketId, article, count, image, name, price} = req.body
 
-            let basketItem = await BasketItem.findOne({where: {itemId, itemColorId, basketId}})
+            let basketItem = await BasketItem.findOne({where: {itemId, itemColorId, basketId, article}})
             if (!basketItem) {
-                basketItem = await BasketItem.create({itemId, itemColorId, basketId, count, img: image, name, price})
+                basketItem = await BasketItem.create(
+                    {itemId, itemColorId, basketId, article, count, img: image, name, price}
+                )
             } else {
                 basketItem.count = count
                 await basketItem.save()
