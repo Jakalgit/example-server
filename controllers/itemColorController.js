@@ -174,7 +174,7 @@ class itemColorController {
             if (colorCond) {
                 colorCond.article = article
                 await colorCond.save()
-                return res.json(article)
+                return res.json(colorCond)
             } else {
                 return res.json("Ошибка")
             }

@@ -45,7 +45,7 @@ const ItemTag = sequelize.define('item_tag', {
 
 const ItemColor = sequelize.define('item_color', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    article: {type: DataTypes.STRING, primaryKey: true, allowNull: false},
+    article: {type: DataTypes.STRING, allowNull: false},
     img1: {type: DataTypes.STRING, allowNull: false},
     img2: {type: DataTypes.STRING, allowNull: false},
     img3: {type: DataTypes.STRING, allowNull: false},
