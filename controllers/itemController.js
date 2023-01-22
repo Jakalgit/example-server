@@ -5,12 +5,12 @@ const ApiError = require('../error/ApiError')
 class itemController {
     async create(req, res, next) {
         try {
-            const {name, price, oldPrice, discount, discountFlag, length, width, height, weight,
+            const {name, price, oldPrice, discount, article, discountFlag, length, width, height, weight,
                 visibility, new_item, availability, tags} = req.body
 
             const parseTags = JSON.parse(tags)
 
-            const item = await Item.create({name, img: "", price, old_price: oldPrice, discount, availability,
+            const item = await Item.create({name, price, old_price: oldPrice, discount, article, availability,
                 discount_flag: discountFlag, length, width, height, weight, visibility, new_item, count_shop: '0'})
             for (const tag of parseTags) {
                 const findTag = await ItemTag.findOne({where: {name: tag.name}})
@@ -135,6 +135,24 @@ class itemController {
         } catch (e) {
             console.log(e)
             return res.json('Ошибка')
+        }
+    }
+
+    async changeArticle(req, res) {
+        try {
+            const {id, article} = req.body
+
+            const colorCond = await Item.findOne({where: {id}})
+            if (colorCond) {
+                colorCond.article = article
+                await colorCond.save()
+                return res.json(colorCond)
+            } else {
+                return res.json("Ошибка")
+            }
+        } catch (e) {
+            console.log(e)
+            return res.json("Error")
         }
     }
 

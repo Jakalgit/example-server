@@ -24,8 +24,8 @@ class basketItemController {
 
     async increment(req, res) {
         try {
-            const {itemId, itemColorId, basketId} = req.body
-            let basketItem = await BasketItem.findOne({where: {itemId, itemColorId, basketId}})
+            const {itemId, basketId} = req.body
+            let basketItem = await BasketItem.findOne({where: {itemId, basketId}})
             if (basketItem && basketItem.count <= 99) {
                 basketItem.count = basketItem.count + 1
                 await basketItem.save()
@@ -40,8 +40,8 @@ class basketItemController {
 
     async decrement(req, res) {
         try {
-            const {itemId, itemColorId, basketId} = req.body
-            let basketItem = await BasketItem.findOne({where: {itemId, itemColorId, basketId}})
+            const {itemId, basketId} = req.body
+            let basketItem = await BasketItem.findOne({where: {itemId, basketId}})
             if (basketItem && basketItem.count >= 1) {
                 basketItem.count = basketItem.count - 1
                 await basketItem.save()

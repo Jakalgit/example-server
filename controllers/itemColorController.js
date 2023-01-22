@@ -4,7 +4,7 @@ const admin = require("firebase-admin");
 class itemColorController {
     async create(req, res) {
         try {
-            let {itemId, article} = req.body
+            let {itemId} = req.body
             let {img_1, img_2, img_3, img_4} = req.files
 
             const bucket = admin.storage().bucket()
@@ -33,19 +33,10 @@ class itemColorController {
                 streamStart(file4, img_4)
 
                 const itemColor = await ItemColor.create(
-                    {itemId, article, img1: fileName1, img2: fileName2, img3: fileName3, img4: fileName4}
+                    {itemId, img1: fileName1, img2: fileName2, img3: fileName3, img4: fileName4}
                 )
 
-                // Обновление изображения айтема
-                const colors = await ItemColor.findAll({where: {itemId}})
-                if (item.img !== colors[0].img1 && item.img) {
-                    await bucket.file(item.img).delete()
-                } else {
-                    item.img = colors[0].img1
-                }
-
                 await item.save()
-
                 return res.json(itemColor)
             } else {
                 return res.json('Ошибка')
@@ -71,12 +62,6 @@ class itemColorController {
                 streamStart(file, img1)
                 colorCond.img1 = fileName
                 await colorCond.save()
-
-                // Смена изображения айтема если мы меняем 1ый цвет
-                const colors = await ItemColor.findAll({where: colorCond.itemId})
-                const item = await Item.findOne({where: colorCond.itemId})
-                item.img = colors[0].img1
-                await item.save()
 
                 return res.json('Сохранено')
             } else {
@@ -166,24 +151,6 @@ class itemColorController {
         }
     }
 
-    async changeArticle(req, res) {
-        try {
-            const {id, article} = req.body
-
-            const colorCond = await ItemColor.findOne({where: {id}})
-            if (colorCond) {
-                colorCond.article = article
-                await colorCond.save()
-                return res.json(colorCond)
-            } else {
-                return res.json("Ошибка")
-            }
-        } catch (e) {
-            console.log(e)
-            return res.json("Error")
-        }
-    }
-
     async deleteColor(req, res) {
         try {
             const {id} = req.body
@@ -216,27 +183,11 @@ class itemColorController {
 
     async getColor(req, res) {
         try {
-            const {id} = req.params
-
-            const itemColor = await ItemColor.findOne({where: {id}})
-            if (itemColor) {
-                return res.json(itemColor)
-            } else {
-                return res.json('Ошибка')
-            }
-        } catch (e) {
-            console.log(e)
-            return res.json('Ошибка')
-        }
-    }
-
-    async getAll(req, res) {
-        try {
             const {itemId} = req.query
 
-            const itemColors = await ItemColor.findAll({where: {itemId}})
-            if (itemColors.length !== 0) {
-                return res.json(itemColors)
+            const itemColor = await ItemColor.findOne({where: {itemId}})
+            if (itemColor) {
+                return res.json(itemColor)
             } else {
                 return res.json('Ошибка')
             }

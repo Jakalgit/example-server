@@ -22,12 +22,12 @@ const BasketItem = sequelize.define('basket_item', {
 
 const Item = sequelize.define('item', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    img: {type: DataTypes.STRING, allowNull: false},
-    name: {type: DataTypes.STRING, unique: true, allowNull: false},
+    name: {type: DataTypes.STRING, allowNull: false},
     price: {type: DataTypes.STRING, allowNull: false},
     old_price: {type: DataTypes.STRING, allowNull: false},
     discount: {type: DataTypes.STRING, allowNull: false},
     discount_flag: {type: DataTypes.BOOLEAN, allowNull: false},
+    article: {type: DataTypes.STRING, unique: true, allowNull: false},
     length: {type: DataTypes.STRING, allowNull: false},
     width: {type: DataTypes.STRING, allowNull: false},
     height: {type: DataTypes.STRING, allowNull: false},
@@ -45,7 +45,6 @@ const ItemTag = sequelize.define('item_tag', {
 
 const ItemColor = sequelize.define('item_color', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    article: {type: DataTypes.STRING, allowNull: false},
     img1: {type: DataTypes.STRING, allowNull: false},
     img2: {type: DataTypes.STRING, allowNull: false},
     img3: {type: DataTypes.STRING, allowNull: false},
