@@ -1,4 +1,3 @@
-const ApiError = require('../error/ApiError')
 const {User} = require('../models/models')
 
 class userController {

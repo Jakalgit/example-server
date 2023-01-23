@@ -34,7 +34,7 @@ class itemController {
             let limit = 12
             let offset = page * limit - limit
             let items;
-            let paramsList = [].push({visibility}, {availability})
+            let paramsList = [{visibility}, {availability}]
             let idList = []
 
             if (tags) {
