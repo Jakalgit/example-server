@@ -211,16 +211,18 @@ function streamStart(file, img) {
             contentType: img.mimetype,
         },
     })
-    stream.on("error", () => {
+    stream.on("error", (e) => {
+        console.log(e)
         const stream = file.createWriteStream({
             metadata: {
                 contentType: img.mimetype,
             },
         })
-        stream.on("error", () => {})
-            .on("finish", async () => {
-                await file.makePublic()
-            }).end(img.data)
+        stream.on("error", () => {
+            console.log(e)
+        }).on("finish", async () => {
+            await file.makePublic()
+        }).end(img.data)
     }).on("finish", async () => {
         await file.makePublic()
     }).end(img.data)
