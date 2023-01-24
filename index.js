@@ -14,7 +14,7 @@ const PORT = 5000
 
 const app = express()
 app.use(cors({
-    origin: 'https://workrc.ru/catalog/'
+    origin: 'https://workrc.ru'
 }))
 app.use(bodyParser.urlencoded({
     extended: true
