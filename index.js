@@ -13,6 +13,7 @@ const bodyParser = require("body-parser");
 const PORT = 5000
 
 const app = express()
+app.options('*', cors())
 app.use(cors({
     origin: '*'
 }))
