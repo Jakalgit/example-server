@@ -15,16 +15,17 @@ class itemColorController {
 
             if (item && itemId && img_1 && img_2 && img_3 && img_4) {
 
-                const fileName1 = String(Date.now() + '-1-' + img_1.name.replace('.', '-'))
+                const date = Date.now()
+                const fileName1 = String(date + '-1-' + img_1.name.replace('.', '-'))
                 const file1 = bucket.file(fileName1)
 
-                const fileName2 = String(Date.now() + '-2-' + img_2.name.replace('.', '-'))
+                const fileName2 = String(date + '-2-' + img_2.name.replace('.', '-'))
                 const file2 = bucket.file(fileName2)
 
-                const fileName3 = String(Date.now() + '-3-' + img_3.name.replace('.', '-'))
+                const fileName3 = String(date + '-3-' + img_3.name.replace('.', '-'))
                 const file3 = bucket.file(fileName3)
 
-                const fileName4 = String(Date.now() + '-4-' + img_4.name.replace('.', '-'))
+                const fileName4 = String(date + '-4-' + img_4.name.replace('.', '-'))
                 const file4 = bucket.file(fileName4)
 
                 streamStart(file1, img_1)
@@ -210,12 +211,18 @@ function streamStart(file, img) {
             contentType: img.mimetype,
         },
     })
-    
-    stream.on("error", (e) => {
-        console.log(e)
+    stream.on("error", () => {
+        const stream = file.createWriteStream({
+            metadata: {
+                contentType: img.mimetype,
+            },
+        })
+        stream.on("error", () => {})
+            .on("finish", async () => {
+                await file.makePublic()
+            }).end(img.data)
     }).on("finish", async () => {
         await file.makePublic()
-        console.log('shared')
     }).end(img.data)
 }
 
