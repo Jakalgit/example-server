@@ -9,6 +9,7 @@ router.post('/change/img2', checkRole('ADMIN'), itemColorController.changeImg_2)
 router.post('/change/img3', checkRole('ADMIN'), itemColorController.changeImg_3)
 router.post('/change/img4', checkRole('ADMIN'), itemColorController.changeImg_4)
 router.post('/delete', checkRole('ADMIN'), itemColorController.deleteColor)
+router.get('/by-ids', itemColorController.getColorByIds)
 router.get('/get', itemColorController.getColor)
 router.get('/full', itemColorController.getFullAll)
 

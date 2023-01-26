@@ -1,5 +1,6 @@
 const {ItemColor, Item} = require("../models/models")
 const admin = require("firebase-admin");
+const {Op} = require('sequelize');
 
 class itemColorController {
     async create(req, res) {
@@ -195,6 +196,18 @@ class itemColorController {
         } catch (e) {
             console.log(e)
             return res.json('Ошибка')
+        }
+    }
+
+    async getColorByIds(req, res) {
+        try {
+            const {IDs} = req.query
+            const parseList = JSON.parse(IDs)
+            const colors = await ItemColor.findAll({where: {[Op.or]: parseList}})
+            return res.json(colors)
+        } catch (e) {
+            console.log(e)
+            return res.json("Error")
         }
     }
 

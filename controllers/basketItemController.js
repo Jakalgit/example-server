@@ -88,9 +88,9 @@ class basketItemController {
 
     async getOne(req, res) {
         try {
-            const {itemId, itemColorId, basketId} = req.query
+            const {itemId, basketId} = req.query
 
-            const basketItem = await BasketItem.findOne({where: {itemId, itemColorId, basketId}})
+            const basketItem = await BasketItem.findOne({where: {itemId, basketId}})
             if (basketItem) {
                 return res.json(basketItem)
             } else {
