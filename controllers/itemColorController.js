@@ -202,11 +202,10 @@ class itemColorController {
     async getColorByIds(req, res) {
         try {
             const {IDs} = req.query
+            IDs.replaceAll('%7B', '{')
+            IDs.replaceAll('%22', '"')
+            IDs.replaceAll('%7D', '}')
             const parseList = JSON.parse(IDs)
-            parseList.replaceAll('%7B', '{')
-            parseList.replaceAll('%22', '"')
-            parseList.replaceAll('%7D', '}')
-            console.log(parseList)
             const colors = await ItemColor.findAll({where: {[Op.or]: parseList}})
             return res.json(colors)
         } catch (e) {
