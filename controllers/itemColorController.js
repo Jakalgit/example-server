@@ -209,7 +209,7 @@ class itemColorController {
             const colors = await ItemColor.findAll({where: {[Op.or]: parseList}})
             return res.json(colors)
         } catch (e) {
-            console.log(e)
+            console.error(e)
             return res.json("Error")
         }
     }
