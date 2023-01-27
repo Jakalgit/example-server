@@ -206,6 +206,7 @@ class itemColorController {
             IDs.replaceAll('%22', '"')
             IDs.replaceAll('%7D', '}')
             const parseList = JSON.parse(IDs)
+            return res.json(parseList)
             const colors = await ItemColor.findAll({where: {[Op.or]: parseList}})
             return res.json(colors)
         } catch (e) {
