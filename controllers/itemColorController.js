@@ -202,7 +202,7 @@ class itemColorController {
     async getColorByIds(req, res) {
         try {
             const {IDs} = req.query
-            return res.json(IDs)
+            return res.json(JSON.parse(IDs))
             IDs.replaceAll('%7B', '{')
             IDs.replaceAll('%22', '"')
             IDs.replaceAll('%7D', '}')
