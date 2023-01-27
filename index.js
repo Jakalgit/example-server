@@ -15,7 +15,7 @@ const PORT = 5000
 const app = express()
 app.options('*', cors())
 app.use(cors({
-    origin: '*'
+    origin: 'https://workrc.ru'
 }))
 app.use(bodyParser.urlencoded({
     extended: true
