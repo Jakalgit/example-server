@@ -4,7 +4,7 @@ require('pg')
 module.exports = new Sequelize(
     'postgres', // Название БД
     'postgres', // Пользователь
-    'example-password', // Пароль
+    'example-database_123', // Пароль
     {
         dialect: 'postgres',
         dialectOptions: {
@@ -13,7 +13,7 @@ module.exports = new Sequelize(
                 rejectUnauthorized: false
             }
         },
-        host: 'db.aqdjyckdutvxnqggowxb.supabase.co',
+        host: 'db.oyalflccjxehzmhtcdjp.supabase.co',
         port: '5432',
     },
 )
