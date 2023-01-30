@@ -22,6 +22,22 @@ class basketItemController {
         }
     }
 
+    async setCountBasketItem(req, res) {
+        try {
+            const {itemId, basketId, count} = req.body
+            let basketItem = await BasketItem.findOne({where: {itemId, basketId}})
+            if (count =>  1 &&  count <= 99) {
+                basketItem.count = count
+                await basketItem.save()
+            }
+
+            return res.json(basketItem)
+        } catch (e) {
+            console.log(e)
+            return res.json(e)
+        }
+    }
+
     async increment(req, res) {
         try {
             const {itemId, basketId, count} = req.body
