@@ -7,7 +7,7 @@ const router = require('./routes/index')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const admin = require("firebase-admin");
-const serviceAccount = require("./shoprc-storage-firebase-adminsdk-9ks2m-3ca44433cc.json");
+const serviceAccount = require("./example-storage-1027f-firebase-adminsdk-3hha1-343fdb81d4.json");
 const bodyParser = require("body-parser");
 
 const PORT = 5000
